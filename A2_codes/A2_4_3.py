@@ -30,8 +30,8 @@ def planeHammersley(s,n):
 
 #UNIT SQUARE IS SAMPLED 500 points
 samples = planeHammersley(2,500)
-
-sorted(samples, key=lambda x: x[0])
+print samples
+#sorted(samples, key=lambda x: x[0])
 #print samples[:, :10]
 plt.scatter(samples[0], samples[1])
 plt.show()
@@ -39,13 +39,17 @@ plt.show()
 #tri = Delaunay(samples)
 #X, Y = Plotly_data(samples, tri.simplices)
 
-max_discr = -100
+max_discr = -500
 total_num_points = len(samples[0])
+print samples
 
 for p_ix in range(total_num_points):
+	print "Main index", p_ix
 	incl_points = 0
 	for inc_p_idx in range(p_ix):
-		if samples[1][inc_p_idx] <= samples[1][p_ix]:
+		#print incl_p_idx
+		if samples[1][inc_p_idx] <= samples[1][p_ix] and (samples[0][inc_p_idx] <= samples[0][p_ix]):
+			print "He's less", inc_p_idx
 			incl_points += 1
 
 	#print incl_points
